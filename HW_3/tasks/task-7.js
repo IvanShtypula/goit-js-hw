@@ -1,6 +1,3 @@
-// Напиши скрипт управления личным кабинетом интернет банка.
-// Есть объект account в котором необходимо реализовать методы
-// для работы с балансом и историей транзакций.
 
 'use strict';
 
@@ -85,7 +82,11 @@ const account = {
    * Метод ищет и возвращает объект транзации по id
    */
   getTransactionDetails(id) {
-
+    for(const transaction of this.transactions){
+      if(transaction.id === id){
+        return transaction;
+      }
+    } 
   },
 
   /*
@@ -93,19 +94,16 @@ const account = {
    * определенного типа транзакции из всей истории транзакций
    */
   getTransactionTotal(type) {
-    let allDeposits = 0;
-    let allWithdraws = 0;
+    let allTransactions = 0;
     for (const transaction of this.transactions){
-      if(transaction.type === "deposit"){
-        allDeposits += transaction.amount;
+      if(transaction.type === type){
+        allTransactions += transaction.amount;
       } 
-    
     }
-    return allDeposits;
+    return `Сумма всех ${type}: ${allTransactions}`;
   },
 };
 
-// console.log(account.createTransaction(30, 'deposit'));
 account.deposit(40);
 account.withdraw(30);
 account.deposit(60);
@@ -113,6 +111,8 @@ account.withdraw(20);
 account.deposit(50);
 account.withdraw(50);
 console.log(account.transactions);
-console.log(account.balance);
-console.log(account.getTransactionTotal('withdraw'));
-console.log(account.getTransactionTotal("deposit"));
+console.log(account.getBalance());
+console.log(account.getTransactionDetails(2));
+console.log(account.getTransactionTotal(Transaction.DEPOSIT));
+console.log(account.getTransactionTotal(Transaction.WITHDRAW));
+
