@@ -62,7 +62,7 @@ class Car {
    */
   turnOff() {
     this.isOn = false;
-    return this.speed = 0;
+    this.speed = 0;
   }
 
   /*

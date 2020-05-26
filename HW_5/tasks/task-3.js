@@ -13,8 +13,11 @@ class Storage {
     this.items.push(item);
   }
 
-  removeItem = function(removeItem){
-    this.items = this.items.filter(item => item !== removeItem);
+   removeItem = function(removeItem){
+   if(this.items.includes(removeItem)){
+     console.log(removeItem);
+     this.items.splice(this.items.indexOf(removeItem),1);
+   }
   };
 };
 

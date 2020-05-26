@@ -11,15 +11,15 @@ class StringBuilder {
   }
 
   append(str){
-    this._value = `${this._value}${str}`;
+    this._value = this._value + str;
   }
 
   prepend(str){
-    this._value = `${str}${this._value}`;
+    this._value = str + this._value;
   }
 
   pad(str){
-    this._value = `${str}${this._value}${str}`;
+    this._value = str+ this._value + str;
   }
 };
 
