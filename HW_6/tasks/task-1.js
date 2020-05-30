@@ -185,16 +185,13 @@ console.log(getNamesSortedByFriendsCount(usersArr));
 
 // 10 Получить массив всех умений всех пользователей (поле skills), при этом не должно быть повторяющихся умений и они должны быть отсортированы в алфавитном порядке.
 
-const getSortedUniqueSkills = function(users) {
-  const copyUsers = [...users];
-  return copyUsers.reduce((allSkills, user) => {
+const getSortedUniqueSkills = users => users.reduce((allSkills, user) => {
     for(const skill of user.skills){
-      if(!allSkills.includes(skill)){
-      allSkills.push(skill);
-      }
+    if(!allSkills.includes(skill)){
+    allSkills.push(skill);
     }
+  }
   return allSkills.sort();
-  },[]);
-}
+},[]);
 console.log(getSortedUniqueSkills(usersArr));
 // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
