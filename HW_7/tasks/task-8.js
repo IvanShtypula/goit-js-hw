@@ -1,24 +1,50 @@
 
 'use strict';
 
-// Напиши скрипт создания и очистки коллекции элементов.
-//  Пользователь вводит количество элементов в input и нажимает кнопку Создать, 
-//  после чего рендерится коллекция. При нажатии на кнопку Очистить, коллекция элементов очищается.
+const boxesRef = document.querySelector('#boxes');
+const inputRef = document.querySelector('#controls input[type="number"]');
+const renderBtnRef = document.querySelector('#controls button[data-action="render"]');
+const destroyBtnRef = document.querySelector('#controls button[data-action="destroy"]');
 
-// Создай функцию createBoxes(amount), которая принимает 1 параметр amount - число.
-//  Функция создает столько div, сколько указано в amount и добавляет их в div#boxes.
 
-// Каждый созданный div:
+inputRef.addEventListener('input', createBoxes);
+renderBtnRef.addEventListener('click', renderBoxes)
 
-// Имеет случайный rgb цвет фона
-// Размеры самого первого div - 30px на 30px
-// Каждый следующий div после первого, должен быть шире и выше предыдущего на 10px
-// Создай функцию destroyBoxes(), которая очищает div#boxes.
+const arrBoxes = [];
 
-/* <div id="controls">
-  <input type="number" min="0" max="100" step="1" />
-  <button type="button" data-action="render">Создать</button>
-  <button type="button" data-action="destroy">Очистить</button>
-</div>
-<div id="boxes"></div> */
+function createBoxes(amount){
+  let widthBox = 20;
+  let heightBox = 20;
+  for(let i = 0; i < amount.target.value; i += 1){
+    const box = document.createElement('div');
+    widthBox += 10;
+    heightBox += 10;
+    box.style.width = widthBox + 'px';
+    box.style.height = heightBox + 'px';
+    box.style.backgroundColor = randomRgbColor();
+    arrBoxes.push(box);
+    }
+}
 
+console.log(arrBoxes)
+
+// function renderBoxes(){
+//   arrBoxes.forEach(box => boxesRef.append(box));
+// }
+
+function renderBoxes(){
+  boxesRef.append(...arrBoxes);
+}
+
+const colorChanel = function getRandom(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; 
+}
+
+function randomRgbColor(){
+  const randomChanelRed = colorChanel(0, 255);
+  const randomChanelGreen = colorChanel(0, 255);
+  const randomChanelBlue = colorChanel(0, 255);
+  return 'rgb('+randomChanelRed+','+randomChanelGreen+', '+randomChanelBlue+')'
+}
