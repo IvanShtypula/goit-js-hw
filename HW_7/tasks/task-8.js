@@ -8,20 +8,21 @@ const destroyBtnRef = document.querySelector('#controls button[data-action="dest
 
 inputRef.addEventListener('input', createBoxes);
 renderBtnRef.addEventListener('click', renderBoxes);
-destroyBtnRef.addEventListener('click', destroyBoxes);
 
 let arrBoxes = [];
 
 function createBoxes(amount){
+  const inputValue = amount.target.value;
   let widthBox = 20;
   let heightBox = 20;
-  for(let i = 0; i < amount.target.value; i += 1){
+  for(let i = 0; i < inputValue; i += 1){
     const box = document.createElement('div');
     widthBox += 10;
     heightBox += 10;
     box.style.width = widthBox + 'px';
     box.style.height = heightBox + 'px';
     box.style.backgroundColor = randomRgbColor();
+    box.classList.add('box');
     arrBoxes.push(box);
     }
 }
@@ -48,7 +49,14 @@ function renderBoxes(){
   boxesRef.append(...arrBoxes);
 }
 
+
+
+destroyBtnRef.addEventListener('click', destroyBoxes);
+
 function destroyBoxes(){
-  boxesRef.innerHTML = '';
+  const allBoxes = document.querySelectorAll('.box');
+  console.log(allBoxes);
+  allBoxes.forEach(box => box.remove());
+  // boxesRef.innerHTML = '';
   arrBoxes = [];
 }
