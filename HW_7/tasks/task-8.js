@@ -6,11 +6,11 @@ const inputRef = document.querySelector('#controls input[type="number"]');
 const renderBtnRef = document.querySelector('#controls button[data-action="render"]');
 const destroyBtnRef = document.querySelector('#controls button[data-action="destroy"]');
 
-
 inputRef.addEventListener('input', createBoxes);
-renderBtnRef.addEventListener('click', renderBoxes)
+renderBtnRef.addEventListener('click', renderBoxes);
+destroyBtnRef.addEventListener('click', destroyBoxes);
 
-const arrBoxes = [];
+let arrBoxes = [];
 
 function createBoxes(amount){
   let widthBox = 20;
@@ -26,15 +26,6 @@ function createBoxes(amount){
     }
 }
 
-console.log(arrBoxes)
-
-// function renderBoxes(){
-//   arrBoxes.forEach(box => boxesRef.append(box));
-// }
-
-function renderBoxes(){
-  boxesRef.append(...arrBoxes);
-}
 
 const colorChanel = function getRandom(min, max) {
   min = Math.ceil(min);
@@ -47,4 +38,17 @@ function randomRgbColor(){
   const randomChanelGreen = colorChanel(0, 255);
   const randomChanelBlue = colorChanel(0, 255);
   return 'rgb('+randomChanelRed+','+randomChanelGreen+', '+randomChanelBlue+')'
+}
+
+// function renderBoxes(){
+//   arrBoxes.forEach(box => boxesRef.append(box));
+// }
+
+function renderBoxes(){
+  boxesRef.append(...arrBoxes);
+}
+
+function destroyBoxes(){
+  boxesRef.innerHTML = '';
+  arrBoxes = [];
 }
