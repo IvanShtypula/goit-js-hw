@@ -8,6 +8,7 @@ const destroyBtnRef = document.querySelector('#controls button[data-action="dest
 
 inputRef.addEventListener('input', createBoxes);
 renderBtnRef.addEventListener('click', renderBoxes);
+destroyBtnRef.addEventListener('click', destroyBoxes);
 
 let arrBoxes = [];
 
@@ -48,8 +49,6 @@ function randomRgbColor(){
 function renderBoxes(){
   boxesRef.append(...arrBoxes);
 }
-
-destroyBtnRef.addEventListener('click', destroyBoxes);
 
 function destroyBoxes(){
   const allBoxes = document.querySelectorAll('.box');
