@@ -49,8 +49,6 @@ function renderBoxes(){
   boxesRef.append(...arrBoxes);
 }
 
-
-
 destroyBtnRef.addEventListener('click', destroyBoxes);
 
 function destroyBoxes(){
