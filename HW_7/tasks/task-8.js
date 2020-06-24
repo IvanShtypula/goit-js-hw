@@ -11,10 +11,10 @@ renderBtnRef.addEventListener('click', renderBoxes);
 destroyBtnRef.addEventListener('click', destroyBoxes);
 
 let arrBoxes = [];
-let inputValue;
 
 function createBoxes(amount){
-  inputValue = amount.target.value;
+  arrBoxes = [];
+  const inputValue = amount.target.value;
   let widthBox = 20;
   let heightBox = 20;
   for(let i = 0; i < inputValue; i += 1){
@@ -42,11 +42,11 @@ function randomRgbColor(){
 }
 
 function renderBoxes(){
+  boxesRef.innerHTML = '';
   boxesRef.append(...arrBoxes);
 }
 
 function destroyBoxes(){
   boxesRef.innerHTML = '';
   arrBoxes = [];
-  
 }
